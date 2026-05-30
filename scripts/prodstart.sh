@@ -1,7 +1,7 @@
 #!/bin/sh
 
-gunicorn \
-  --bind 0.0.0.0:7860 \
-  --workers 2 \
+exec gunicorn \
+  --bind 0.0.0.0:${PORT:-7860} \
+  --workers 1 \
   --timeout 120 \
   server:app
