@@ -1,26 +1,40 @@
 services:
   app:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker.dev/Dockerfile
+
     env_file:
-      - .env
+      - ../.env
+
     container_name: python-services
+
     ports:
       - "5001:5001"
+
     volumes:
-      - .:/app
+      - ../:/app
+
     restart: unless-stopped
+
     networks:
       - word-complex
 
   notebook:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker.dev/Dockerfile
+
     container_name: ml_notebook
+
     ports:
       - "8888:8888"
+
     volumes:
-      - .:/app
+      - ../:/app
 
     working_dir: /app/jupyter_notebook
+
     command: >
       jupyter notebook
       --ip=0.0.0.0
@@ -28,7 +42,9 @@ services:
       --no-browser
       --allow-root
       --NotebookApp.token=my-token
+
     restart: unless-stopped
+
     networks:
       - word-complex
 
