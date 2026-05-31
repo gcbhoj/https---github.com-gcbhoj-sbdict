@@ -13,7 +13,7 @@ services:
       - "7860:7860"
 
     volumes:
-      - ./:/app
+      - .:/app
 
     restart: unless-stopped
 
