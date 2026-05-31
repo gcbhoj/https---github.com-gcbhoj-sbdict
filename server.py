@@ -38,6 +38,17 @@ def home():
         "success": True,
         "message": "SB Canada Dictionary API is running"
     })
+    
+@app.route("/debug/files")
+def debug_files():
+    import os
+
+    return {
+            "app_exists": os.path.exists("/app"),
+            "data_exists": os.path.exists("/app/data"),
+            "files": os.listdir("/app"),
+            "data_files": os.listdir("/app/data") if os.path.exists("/app/data") else []
+        }
 
 
 app.register_blueprint(story_data_bp,url_prefix = BASE_URL)
