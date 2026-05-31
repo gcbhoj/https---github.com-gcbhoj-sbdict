@@ -18,6 +18,6 @@ EXPLORE pycdsl for dictionary
 trial push to render for compatibility and exposing API ENDPOINTS
 
 
-container details
+API documentation : http://localhost:5001/docs/
 
 

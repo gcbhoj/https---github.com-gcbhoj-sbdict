@@ -1,11 +1,13 @@
 import json
 import os
+from flasgger import Swagger
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 from config.envconfig import ENV
 
 
 from middleware.error_handler import (register_error_handlers)
+from config.swagger_config import SWAGGER_CONFIG,SWAGGER_TEMPLATE
 
 from routes.tokenized_data_routes import tokenize_data_bp
 from routes.story_data_routes import story_data_bp
@@ -15,22 +17,10 @@ PORT = int(os.getenv("PORT", 7860))
 app = Flask(__name__)
 CORS(app)
 
-
+Swagger(app, config=SWAGGER_CONFIG, template=SWAGGER_TEMPLATE)
 
 BASE_URL = "/api/v1/python"
 
-
-@app.route("/routes")
-def routes():
-    return jsonify({
-        "routes": [
-            {
-                "path": str(rule),
-                "methods": list(rule.methods)
-            }
-            for rule in app.url_map.iter_rules()
-        ]
-    })
 
 @app.route("/")
 def home():

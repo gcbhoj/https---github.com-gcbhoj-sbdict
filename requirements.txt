@@ -13,4 +13,5 @@ python-dotenv
 pydantic
 spacy-wordnet
 gunicorn
+flasgger
 
