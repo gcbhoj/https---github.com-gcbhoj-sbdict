@@ -19,6 +19,19 @@ CORS(app)
 
 BASE_URL = "/api/v1/python"
 
+
+@app.route("/routes")
+def routes():
+    return jsonify({
+        "routes": [
+            {
+                "path": str(rule),
+                "methods": list(rule.methods)
+            }
+            for rule in app.url_map.iter_rules()
+        ]
+    })
+
 @app.route("/")
 def home():
     return jsonify({
