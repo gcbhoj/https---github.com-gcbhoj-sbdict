@@ -3,21 +3,22 @@ import os
 from flasgger import Swagger
 from flask import Flask,jsonify,request
 from flask_cors import CORS
-from config.envconfig import ENV
+from config.envconfig import PORT,DEBUG
 
-
+from config.dbconfig import connect_db
 from middleware.error_handler import (register_error_handlers)
 from config.swagger_config import SWAGGER_CONFIG,SWAGGER_TEMPLATE
 
 from routes.tokenized_data_routes import tokenize_data_bp
 from routes.story_data_routes import story_data_bp
 
-PORT = int(os.getenv("PORT", 7860))
 
 app = Flask(__name__)
 CORS(app)
 
 Swagger(app, config=SWAGGER_CONFIG, template=SWAGGER_TEMPLATE)
+
+db = connect_db()
 
 BASE_URL = "/api/v1/python"
 
@@ -56,6 +57,6 @@ if __name__ == '__main__':
        app.run(
         host="0.0.0.0",
         port=PORT,
-        debug=ENV["NODE_ENV"] == "development"
+        debug=DEBUG
     )
     

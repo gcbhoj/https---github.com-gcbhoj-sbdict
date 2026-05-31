@@ -10,4 +10,5 @@ python-dotenv
 pydantic
 spacy-wordnet
 gunicorn
+pymongo
 
