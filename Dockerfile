@@ -6,6 +6,11 @@ WORKDIR /app
 # Copy requirements
 COPY requirements_prod.txt .
 
+
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    update-ca-certificates
+
 # Install Python dependencies
 RUN pip install --upgrade pip setuptools wheel && \
     pip install -r requirements_prod.txt 
