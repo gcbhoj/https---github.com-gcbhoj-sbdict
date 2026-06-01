@@ -14,6 +14,6 @@ class WriteTokenizedStoryToMongoDB:
         
         result = self.collection.insert_one(doc)
         
-        return str(result.inserted_id+ " tokenized and added to DB")
+        return f"{result.inserted_id} tokenized and added to DB"
         
     

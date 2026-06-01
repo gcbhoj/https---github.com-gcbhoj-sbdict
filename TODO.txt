@@ -5,6 +5,11 @@ TESTS:
 4. tokenize_english_version_story from services/fable_extraction_pipeline
 5. tokenize_sanskrit_version_story from services/fable_extraction_pipeline
 
+New TESTS
+1. tokenized_story_mapper from utils
+2.write_tokenized_stories_to_mongodb from repository
+
+
 
 API ENDPOINTS
 
@@ -15,7 +20,6 @@ API ENDPOINTS
 
 EXPLORE pycdsl for dictionary
 
-trial push to render for compatibility and exposing API ENDPOINTS
 
 
 API documentation : http://localhost:5001/docs/

@@ -1,4 +1,5 @@
 from repository.get_tokenized_story_by_Id import GetTokenizedStoryById
+from repository.get_tokenized_story_by_id_from_mongodb import GetTokenizedStoryByIdFromMongoDB
 
 
 class RetrieveTokenizedStoryById:
@@ -12,9 +13,14 @@ class RetrieveTokenizedStoryById:
 
     def retrieve_story(self):
 
-        repository = GetTokenizedStoryById(self.story_id)
+        # # Retrieves from file system
+        # repository = GetTokenizedStoryById(self.story_id)
 
-        story = repository.retrieve_story()
+        # story = repository.retrieve_story()
+        
+        repo = GetTokenizedStoryByIdFromMongoDB(self.story_id)
+        
+        story = repo.get_story()
 
         if story is None:
             raise LookupError("Story not found")
